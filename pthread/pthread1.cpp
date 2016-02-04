@@ -5,7 +5,8 @@
 void *threadFunc(void *arg)
 {
 	for(int i=0; i<10; ++i)
-	std::cout<<"thread func "<<i<<"\n";
+		std::cout<<"thread func "<<i<<" ";
+std::cout<<"\n";
 }
 
 

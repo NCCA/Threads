@@ -1,4 +1,4 @@
-TARGET=QThread
+TARGET=QThreadDemo
 QT += widgets
 CONFIG-=app_bundle
 SOURCES=main.cpp \

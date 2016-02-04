@@ -17,7 +17,6 @@ void *threadFunc(void *arg)
 	std::cout<<"Arg 2 "<<args->arg2<<std::endl;
 	*/
 	printf("thread function %d %c \n",args->arg1,args->arg2);
-	int ret=args->arg1*2;
 }
 
 
@@ -34,7 +33,6 @@ int main()
 	}
 	// now join
 
-	int retval;
 	for(int i=0; i<4; ++i)
 	{
 		pthread_join(threadID[i],0);
