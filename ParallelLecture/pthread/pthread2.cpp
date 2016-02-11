@@ -12,7 +12,10 @@ struct argStruct
 void *threadFunc(void *arg)
 {
 	struct argStruct *args = (argStruct *)arg;
-for(int i=0; i<100000; ++i)
+/*	std::cout<<"thread func "<<std::endl;
+	std::cout<<"Arg 1 "<<args->arg1<<std::endl;
+	std::cout<<"Arg 2 "<<args->arg2<<std::endl;
+	*/
 	printf("thread function %d %c \n",args->arg1,args->arg2);
 }
 
@@ -20,17 +23,16 @@ for(int i=0; i<100000; ++i)
 int main()
 {
 	pthread_t threadID[4];
-	struct argStruct args[4];
+	struct argStruct args;
 
 	for(int i=0; i<4; ++i)
 	{
-		args[i].arg1=i;
-		args[i].arg2='a'+i;
-		pthread_create(&threadID[i],0,threadFunc,(void *)&args[i]);
+		args.arg1=i;
+		args.arg2='a'+i;
+		pthread_create(&threadID[i],0,threadFunc,(void *)&args);
 	}
 	// now join
 
-	int retval;
 	for(int i=0; i<4; ++i)
 	{
 		pthread_join(threadID[i],0);

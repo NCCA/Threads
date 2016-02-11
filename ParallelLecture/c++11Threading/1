@@ -1,0 +1,48 @@
+In file included from SimplePool.cpp:3:
+./SimplePool.h:70:9: error: no matching function for call to object of type 'std::function<void (int)>'
+        task();
+        ^~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1504:9: note: candidate function not viable: requires 1 argument, but 0 were provided
+    _Rp operator()(_ArgTypes...) const;
+        ^
+In file included from SimplePool.cpp:3:
+./SimplePool.h:95:18: error: out-of-line definition of 'enqueue' does not match any declaration in 'SimplePool'
+void SimplePool::enqueue(std::function<void(int)> f,int a)
+                 ^~~~~~~
+./SimplePool.h:28:18: note: type of 1st parameter of member declaration does not match definition ('function<int>' vs 'function<void (int)>')
+    void enqueue(std::function<int> f,int a);
+                 ^
+./SimplePool.h:101:25: error: no matching constructor for initialization of 'std::function<void (int)>'
+        tasks.push_back(std::function<void(int)>(f,a));
+                        ^                        ~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1460:7: note: candidate constructor [with _Alloc = int] not viable: no known conversion from 'std::function<void (int)>' to 'std::__1::allocator_arg_t' for 1st argument
+      function(allocator_arg_t, const _Alloc&) _NOEXCEPT : __f_(0) {}
+      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1454:41: note: candidate template ignored: disabled by 'enable_if' [with _Fp = std::__1::function<void (int)>]
+                                        __callable<_Fp>::value &&
+                                        ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1463:7: note: candidate constructor template not viable: requires 3 arguments, but 2 were provided
+      function(allocator_arg_t, const _Alloc&, nullptr_t) _NOEXCEPT : __f_(0) {}
+      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1465:7: note: candidate constructor template not viable: requires 3 arguments, but 2 were provided
+      function(allocator_arg_t, const _Alloc&, const function&);
+      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1467:7: note: candidate constructor template not viable: requires 3 arguments, but 2 were provided
+      function(allocator_arg_t, const _Alloc&, function&&);
+      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1469:7: note: candidate constructor template not viable: requires at least 3 arguments, but 2 were provided
+      function(allocator_arg_t, const _Alloc& __a, _Fp __f,
+      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1446:5: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+    function() _NOEXCEPT : __f_(0) {}
+    ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1448:5: note: candidate constructor not viable: requires 1 argument, but 2 were provided
+    function(nullptr_t) _NOEXCEPT : __f_(0) {}
+    ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1449:5: note: candidate constructor not viable: requires 1 argument, but 2 were provided
+    function(const function&);
+    ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:1450:5: note: candidate constructor not viable: requires 1 argument, but 2 were provided
+    function(function&&) _NOEXCEPT;
+    ^
+3 errors generated.

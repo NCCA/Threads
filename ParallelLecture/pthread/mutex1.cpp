@@ -62,5 +62,6 @@ int main()
 	pthread_join(threadID[0],0);
 	pthread_join(threadID[1],0);
 	pthread_join(threadID[2],0);
+	//while(1){ printf("\n");}
 
 }

@@ -28,7 +28,7 @@ void MainWindow::executeCommand()
     out="popen failed";
   }
 
-  while(fgets(buff, sizeof(buff), in)!=NULL)
+  while(fgets(buff, sizeof(buff), in)!=nullptr)
   {
     out+=buff;
   }

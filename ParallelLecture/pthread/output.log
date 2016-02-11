@@ -1,0 +1,46 @@
+[34mNCCALogger started 12:32PM
+[0m[31m[31m[33m[31m[31m0004 [31m12:32PM 0004 [31m[31mJoining thread 0
+12:32PM [31mthread func 0
+[31m0005 [31m12:32PM [31mthread func 0
+[31m0005 [31m12:32PM [31mthread func 0
+[31m0005 [31m12:32PM [31mthread func 0
+[31m0008 [31m12:32PM [31mthread func 1
+[31m0008 [31m0009 [31m12:32PM [31mthread func 1
+[31m12:32PM [31mthread func 1
+[31m0009 [31m12:32PM [31mthread func 1
+[31m0012 [31m12:32PM [31mthread func 2
+[31m0013 [31m0013 [31m12:32PM [31mthread func 2
+[31m12:32PM [31mthread func 2
+[31m0013 [31m12:32PM [31mthread func 2
+[31m0014 [31m12:32PM [31mthread func 3
+[31m0017 [31m12:32PM [31mthread func 3
+[31m0017 [31m12:32PM [31mthread func 3
+[31m0017 [31m12:32PM [31mthread func 3
+[31m0018 [31m12:32PM [31mthread func 4
+[31m0020 [31m12:32PM [31mthread func 4
+[31m0021 [31m12:32PM [31mthread func 4
+[31m0021 [31m12:32PM [31mthread func 4
+[31m0022 [31m12:32PM [31mthread func 5
+[31m0024 [31m12:32PM [31mthread func 5
+[31m0024 [31m12:32PM [31mthread func 5
+[31m0025 [31m12:32PM [31mthread func 5
+[31m0026 [31m12:32PM [31mthread func 6
+[31m0028 [31m12:32PM [31mthread func 6
+[31m0028 [31m12:32PM [31mthread func 6
+[31m0029 [31m12:32PM [31mthread func 6
+[31m0030 [31m12:32PM [31mthread func 7
+[31m0032 [31m12:32PM [31mthread func 7
+[31m0032 [31m12:32PM [31mthread func 7
+[31m0033 [31m12:32PM [31mthread func 7
+[31m0034 [31m12:32PM [31mthread func 8
+[31m0036 [31m12:32PM [31mthread func 8
+[31m0036 [31m12:32PM [31mthread func 8
+[31m0037 [31m12:32PM [31mthread func 8
+[31m0038 [31m12:32PM [31mthread func 9
+[33m0040 [33m12:32PM 0040 [33mthread func 9
+[33m12:32PM [33mthread func 9
+0041 [33m0042 [33m12:32PM [33mJoining thread 1
+12:32PM [33mthread func 9
+[33m0043 [33m12:32PM [33mJoining thread 2
+[33m0044 [33m12:32PM [33mJoining thread 3
+[0m

@@ -4,16 +4,20 @@
 
 void *threadFunc(void *arg)
 {
-	for(int i=0; i<10; ++i)
+	for(int i=0; i<10000; ++i)
+	{
 		std::cout<<"thread func "<<i<<" ";
-std::cout<<"\n";
+		std::cout.flush();
+	}
+std::cout<<std::endl;
+return 0;
 }
 
 
 int main()
 {
-	pthread_t threadID[4];
-	for(int i=0; i<4; ++i)
+	pthread_t threadID[8];
+	for(int i=0; i<8; ++i)
 	{
 		pthread_create(&threadID[i],0,threadFunc,0);
 	}
@@ -21,8 +25,10 @@ int main()
 	// now join
 	for(int i=0; i<4; ++i)
 	{
+		std::cout<<"*************************\n";
 		pthread_join(threadID[i],0);
 	}
+	std::cout<<"###########################\n";
 }
 
 

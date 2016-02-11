@@ -50,11 +50,11 @@ int main()
 	pthread_create(&threadID[1],0,hashFillerThread,0);
 	pthread_create(&threadID[2],0,consumerThread,0);
 
-	pthread_join(threadID[0],0);
+	pthread_join(threadID[3],0);
 	pthread_join(threadID[1],0);
 	pthread_join(threadID[2],0);
 
-	while(1){ printf("\n");}
+//	while(1){ printf("\n");}
 
 
 

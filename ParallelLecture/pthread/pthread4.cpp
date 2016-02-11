@@ -12,8 +12,9 @@ struct argStruct
 void *threadFunc(void *arg)
 {
 	struct argStruct *args = (argStruct *)arg;
-for(int i=0; i<100000; ++i)
 	printf("thread function %d %c \n",args->arg1,args->arg2);
+	int ret=args->arg1+10;
+	pthread_exit(((void*)(ret)));
 }
 
 
@@ -30,9 +31,11 @@ int main()
 	}
 	// now join
 
-	int retval;
+  int ret;
 	for(int i=0; i<4; ++i)
 	{
-		pthread_join(threadID[i],0);
+		printf("join\n");
+		pthread_join(threadID[i],(void **)&ret);
+		printf("return %d\n",ret);
 	}
 }
