@@ -12,8 +12,8 @@ int sumVect(const std::vector<int>& v)
 {
 	std::cout<<"sumVect\n";
 	int sum=0;
-	for(std::vector<int>::size_type i=0; i<v.size(); ++i)
-		sum += v[i];
+	for(auto i : v)
+		sum += i;
 	return sum;
 }
 
@@ -22,7 +22,7 @@ int sumVectLambda(const std::vector<int>& v)
 	std::cout<<"sumLambda\n";
 
 	int sum=0;
-	for_each(v.begin(),v.end(), // algorithm + lambda
+	for_each(std::begin(v),std::end(v), // algorithm + lambda
 	 [&sum](int x) {sum += x; });
 	return sum;
 }

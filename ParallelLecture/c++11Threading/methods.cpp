@@ -41,7 +41,7 @@ int main()
   threads.reserve(6);
   log.setColour(nccalog::CYAN);
   log.logWarning("creating thread String Function\n");
-  Foo *pFoo=new Foo(10);
+  auto *pFoo=new Foo(10);
   Foo b(20);
 
 	

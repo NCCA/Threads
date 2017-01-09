@@ -1,12 +1,6 @@
-[34mNCCALogger started [34m07:37:23AM [34m
-[31m0001[31m [31m07:37:23AM [31mthread func 0
-[31m0002[31m [31m07:37:23AM [31mthread func 1
-[31m0003[31m [31m07:37:23AM [31mthread func 2
-[31m0004[31m [31m07:37:23AM [31mthread func 3
-[31m0005[31m [31m07:37:23AM [31mthread func 4
-[31m0006[31m [31m07:37:23AM [31mthread func 5
-[31m0007[31m [31m07:37:23AM [31mthread func 6
-[31m0008[31m [31m07:37:23AM [31mthread func 7
-[31m0009[31m [31m07:37:23AM [31mthread func 8
-[31m0010[31m [31m07:37:23AM [31mthread func 9
+[34mNCCALogger started [34m03:55:50PM [34m
+[36m0001[36m [36m03:55:50PM [32m[Warning] [32mcreating thread String Function
+[33m0002[33m [33m03:55:50PM [32m[Warning] [32mJoining thread 0
+[33m0003[33m [33m03:55:50PM [32m[Warning] [32mJoining thread 1
+[33m0004[33m [33m03:55:50PM [31m[ERROR] [31mValue a 109 Value b 70 
 [0m

@@ -11,18 +11,21 @@ nccalog::NCCALogger log;
 
 void foo(const std::string  &a, const std::string &b)
 {
+	while(1)
 	log.logMessage("foo(str,str) ID %d value %s %s \n"
 		,std::this_thread::get_id(),a.c_str(),b.c_str());
 }
 
 void foo(int a)
 {
+	while(1)
 	log.logMessage("foo(int) ID %d value %d \n"
 		,std::this_thread::get_id(),a);
 }
 
 void foo(double a)
 {
+	while(1)
 	log.logMessage("foo(double) ID %d value %f\n"
 		,std::this_thread::get_id(),a);
 }

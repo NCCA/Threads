@@ -1,32 +1,33 @@
 #include <iostream>
 #include <cstdlib>
+#include <array>
 #include <pthread.h>
 
 void *threadFunc(void *arg)
 {
-	for(int i=0; i<10000; ++i)
+	for(int i=0; i<10; ++i)
 	{
-		std::cout<<"thread func "<<i<<" ";
+		std::cout<<"thread func "<<i<<' ';
 		std::cout.flush();
 	}
-std::cout<<std::endl;
+std::cout<<'\n';
 return 0;
 }
 
 
 int main()
 {
-	pthread_t threadID[8];
-	for(int i=0; i<8; ++i)
+	std::array<pthread_t,8> threadID;
+	for(auto &t : threadID)
 	{
-		pthread_create(&threadID[i],0,threadFunc,0);
+		pthread_create(&t,0,threadFunc,0);
 	}
 
 	// now join
-	for(int i=0; i<4; ++i)
+	for(auto &t : threadID)
 	{
 		std::cout<<"*************************\n";
-		pthread_join(threadID[i],0);
+		pthread_join(t,0);
 	}
 	std::cout<<"###########################\n";
 }
