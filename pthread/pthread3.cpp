@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
+#include <array>
 #include <pthread.h>
+
 
 struct argStruct
 {
@@ -14,13 +16,14 @@ void *threadFunc(void *arg)
 	struct argStruct *args = (argStruct *)arg;
 for(int i=0; i<100000; ++i)
 	printf("thread function %d %c \n",args->arg1,args->arg2);
+return 0;
 }
 
 
 int main()
 {
-	pthread_t threadID[4];
-	struct argStruct args[4];
+	std::array<pthread_t,4> threadID;
+	std::array<struct argStruct,4> args;
 
 	for(int i=0; i<4; ++i)
 	{
@@ -30,9 +33,8 @@ int main()
 	}
 	// now join
 
-	int retval;
-	for(int i=0; i<4; ++i)
+	for(auto &t : threadID)
 	{
-		pthread_join(threadID[i],0);
+		pthread_join(t,0);
 	}
 }
