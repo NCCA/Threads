@@ -13,7 +13,7 @@ class Task
 
 		void operator()() const
 		{
-			std::cout<<"class operator called "<<m_id<<"\n";
+			std::cout<<"class operator called "<<m_id<<'\n';
 		}
 
 	private :
@@ -27,7 +27,7 @@ int main()
 {
 	Task t;
 	unsigned long const nThreads=std::thread::hardware_concurrency();
-	std::cout<<"num threads "<<nThreads<<"\n";
+	std::cout<<"num threads "<<nThreads<<'\n';
 	std::thread thread( (Task(2)));
 	thread.join();
 

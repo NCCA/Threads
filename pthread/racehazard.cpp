@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cstdlib>
+#include <memory>
+#include <array>
 #include <unistd.h>
 #include <pthread.h>
 
-char *sharedMem;
-const static int SIZE=20;
+std::unique_ptr<char []>sharedMem;
+constexpr int SIZE=20;
 
 void *starFillerThread(void *arg)
 {
@@ -43,20 +45,14 @@ void *consumerThread(void *arg)
 
 int main()
 {
-	sharedMem = new char[SIZE];
-	pthread_t threadID[3];
+	sharedMem.reset(  new char[SIZE]);
+	std::array<pthread_t,3> threadID;
 
 	pthread_create(&threadID[0],0,starFillerThread,0);
 	pthread_create(&threadID[1],0,hashFillerThread,0);
 	pthread_create(&threadID[2],0,consumerThread,0);
 
-	pthread_join(threadID[3],0);
-	pthread_join(threadID[1],0);
-	pthread_join(threadID[2],0);
-
-//	while(1){ printf("\n");}
-
-
-
+	for(auto &t : threadID)
+		pthread_join(t,0);
 
 }
