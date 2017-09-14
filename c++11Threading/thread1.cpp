@@ -11,7 +11,7 @@ void hello()
 
 int main()
 {
-	unsigned long const nThreads=std::thread::hardware_concurrency();
+	auto nThreads=std::thread::hardware_concurrency();
 	std::cout<<"num threads "<<nThreads<<'\n';
 	std::thread t(hello);
 	t.join();

@@ -14,7 +14,7 @@ struct argStruct
 void *threadFunc(void *arg)
 {
 	struct argStruct *args = (argStruct *)arg;
-for(int i=0; i<100000; ++i)
+for(int i=0; i<10; ++i)
 	printf("thread function %d %c \n",args->arg1,args->arg2);
 return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef MUTEXLOCKER_H__
-#define MUTEXLOCKER_H__
+#ifndef MUTEXLOCKER_H_
+#define MUTEXLOCKER_H_
 #include <pthread.h>
     
 // use the holder pattern to hold a mutex and lock on release
@@ -37,8 +37,8 @@ class MutexLocker
     pthread_mutex_t* m_mutex;    
 
     // no copying and copy assignment allowed
-    MutexLocker (MutexLocker const&);
-    MutexLocker operator= (MutexLocker const&);
+    MutexLocker (MutexLocker const&)=delete;
+    MutexLocker operator= (MutexLocker const&)=delete;
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <future>
+#include <numeric>
 
 
 const static unsigned int size=100000000;
@@ -29,10 +30,7 @@ int sumVectLambda(const std::vector<int>& v)
 int main()
 {
 	std::vector <int> data(size);
-	for(int i=0; i<size; ++i)
-	{
-		data[i]=i;
-	}
+	std::iota(std::begin(data),std::end(data),0);
 
 
 	auto res1 = std::async(sumVect,data);
@@ -43,8 +41,6 @@ int main()
 	auto b=res2.get();
 	auto t1 = std::chrono::high_resolution_clock::now();
 	std::chrono::milliseconds totalMs = std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0);
-
-
 
 	std::cout<<"using standard vector "<<a<<" "<<b<<" took "<<totalMs.count()<<" Ms \n";
 	return EXIT_SUCCESS;

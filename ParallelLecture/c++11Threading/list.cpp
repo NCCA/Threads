@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <future>
+#include <numeric>
 
 
 const static unsigned int size=100000000;
@@ -29,11 +30,7 @@ int sumVectLambda(const std::vector<int>& v)
 int main()
 {
 	std::vector <int> data(size);
-	for(int i=0; i<size; ++i)
-	{
-		data[i]=i;
-	}
-
+	std::iota(std::begin(data),std::end(data),0);
 
 	auto res1 = std::async(sumVect,data);
  	auto res2 = std::async(sumVectLambda,data);

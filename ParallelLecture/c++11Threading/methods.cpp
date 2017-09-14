@@ -8,25 +8,28 @@
 #include "Logger.h"
 
 nccalog::NCCALogger log;
+
 class Foo
 {
 	public :
 	Foo(int id):m_id(id){}
 	void foo(const std::string  &a, const std::string &b)
 	{
+		while(1)
 		log.logMessage("foo(str,str) %d ID %d value %s %s \n"
 			,m_id,std::this_thread::get_id(),a.c_str(),b.c_str());
 	}
 
 	void foo(int a)
 	{
+		while(1)
 		log.logMessage("foo(int) %d ID %d value %d \n"
 			,m_id,std::this_thread::get_id(),a);
 	}
 
 	void foo(double a)
 	{
-
+		while(1)
 		log.logMessage("foo(double) %d ID %d value %f\n"
 			,m_id,std::this_thread::get_id(),a);
 	}

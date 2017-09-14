@@ -22,7 +22,7 @@ void *starFillerThread(void *arg)
 	for(int i=0; i<SIZE; ++i)
 		sharedMem[i]='*';
 	pthread_mutex_unlock(&mutex);
-	sleep(2);
+	//sleep(2);
 	}
 }
 
@@ -36,7 +36,7 @@ void *hashFillerThread(void *arg)
 	for(int i=0; i<SIZE; ++i)
 		sharedMem[i]='#';
 	pthread_mutex_unlock (&mutex);
-	sleep(2);
+//	sleep(2);
 	}
 }
 
@@ -52,7 +52,7 @@ void *consumerThread(void *arg)
 		pthread_mutex_unlock (&mutex);
 		pthread_cond_signal(&waitConsume);
 		printf("\n");
-		sleep(2);
+//		sleep(2);
 		}
 }
 
