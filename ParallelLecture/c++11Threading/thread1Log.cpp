@@ -3,14 +3,13 @@
 #include <cstdlib>
 #include "Logger.h"
 
-nccalog::NCCALogger log;
 
 
 void hello()
 {
-	log.setColour(nccalog::RED);
+	nccalog::NCCALogger::instance().setColour(nccalog::Colours::RED);
 	for(int i=0; i<10; ++i)
-		log.logMessage("thread func %d\n",i);
+		nccalog::NCCALogger::instance().logMessage("thread func %d\n",i);
 }
 
 

@@ -5,7 +5,6 @@
 
 #include "Logger.h"
 
-nccalog::NCCALogger log;
 
 class Counter
 {
@@ -13,7 +12,7 @@ class Counter
      void increment() { ++m_count; }
      ~Counter()
      {
-         log.logWarning("Thread %d called %d times \n",
+         nccalog::NCCALogger::instance().logWarning("Thread %d called %d times \n",
          std::this_thread::get_id() ,m_count	);
      }
     private :

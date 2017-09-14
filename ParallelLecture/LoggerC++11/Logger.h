@@ -1,27 +1,26 @@
-#ifndef LOGGER_H__
-#define LOGGER_H__
-#include <boost/scoped_ptr.hpp>
+#ifndef LOGGER_H_
+#define LOGGER_H_
+#include <memory>
 #include <cstdarg>
 #include <iostream>
 #include <ostream>
 #include <fstream>
-#include <boost/iostreams/stream.hpp>
-#include <boost/iostreams/tee.hpp>
 
 /// @brief logger class for writing to stream and file.
 namespace nccalog
 {
-  enum Colours{NORMAL,RED,GREEN ,YELLOW,BLUE,MAGENTA,CYAN,WHITE,RESET};
-  enum TimeFormat{TIME,TIMEDATE,TIMEDATEDAY};
+  enum class Colours{NORMAL,RED,GREEN ,YELLOW,BLUE,MAGENTA,CYAN,WHITE,RESET};
+  enum class TimeFormat{TIME,TIMEDATE,TIMEDATEDAY};
   class NCCALogger
   {
-    public :
-
+    private:
       NCCALogger();
-      NCCALogger(const std::string &_fname);
       ~NCCALogger();
+      NCCALogger(const NCCALogger &)=delete;
+      NCCALogger & operator=(const NCCALogger &)=delete;
+    public :
+      static NCCALogger &instance();
       void logMessage(const char* fmt, ...);
-
       void logError(const char* fmt, ...);
       void logWarning(const char* fmt, ...);
       void enableLogToFile();
@@ -43,7 +42,7 @@ namespace nccalog
 
     private :
       class Impl;
-      boost::scoped_ptr<Impl> m_impl;
+      std::unique_ptr<Impl> m_impl;
 
 
   };

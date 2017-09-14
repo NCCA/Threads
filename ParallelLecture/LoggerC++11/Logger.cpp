@@ -8,7 +8,8 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
-
+#include <boost/iostreams/tee.hpp>
+#include <boost/iostreams/stream.hpp>
 namespace nccalog
 {
   // PIMPL Idiom to make lib cleaner
@@ -79,7 +80,7 @@ namespace nccalog
                             m_disableColours(false),
                             m_lineNumberCount(0),
                             m_pad(4),
-                            m_colour(RESET),
+                            m_colour(Colours::RESET),
                             m_logfileName(_fname)
   {
 
@@ -156,46 +157,42 @@ namespace nccalog
 
     switch(c)
     {
-      case NORMAL : m_colourString="\x1B[0m"; break;
-      case RED : m_colourString="\x1B[31m"; break;
-      case GREEN : m_colourString="\x1B[32m"; break;
-      case YELLOW : m_colourString="\x1B[33m"; break;
-      case BLUE : m_colourString="\x1B[34m"; break;
-      case MAGENTA : m_colourString="\x1B[35m"; break;
-      case CYAN : m_colourString="\x1B[36m"; break;
-      case WHITE : m_colourString="\x1B[37m"; break;
-      case RESET : m_colourString="\033[0m"; break;
+      case Colours::NORMAL : m_colourString="\x1B[0m"; break;
+      case Colours::RED : m_colourString="\x1B[31m"; break;
+      case Colours::GREEN : m_colourString="\x1B[32m"; break;
+      case Colours::YELLOW : m_colourString="\x1B[33m"; break;
+      case Colours::BLUE : m_colourString="\x1B[34m"; break;
+      case Colours::MAGENTA : m_colourString="\x1B[35m"; break;
+      case Colours::CYAN : m_colourString="\x1B[36m"; break;
+      case Colours::WHITE : m_colourString="\x1B[37m"; break;
+      case Colours::RESET : m_colourString="\033[0m"; break;
       default : m_colourString="\033[0m"; break;
     }
 
 
   }
 
+  NCCALogger & NCCALogger::instance()
+  {
+    static NCCALogger instance;
+    return instance;
+  }
 
 
   NCCALogger::NCCALogger() : m_impl(new NCCALogger::Impl("output.log"))
   {
-    m_impl->setColour(BLUE);
+    m_impl->setColour(Colours::BLUE);
     m_impl->write("NCCALogger started ");
     m_impl->currentTime();
     m_impl->write("\n");
-    m_impl->setColour(RESET);
+    m_impl->setColour(Colours::RESET);
   }
 
-  NCCALogger::NCCALogger(const std::string &_fname) : m_impl(new NCCALogger::Impl(_fname))
-  {
 
-    m_impl->setColour(BLUE);
-    m_impl->write("NCCALogger started ");
-    m_impl->currentTime();
-    m_impl->write("\n");
-    m_impl->setColour(RESET);
-
-  }
 
   NCCALogger::~NCCALogger()
   {
-    m_impl->setColour(RESET);
+    m_impl->setColour(Colours::RESET);
     m_impl->write("\n");
     m_impl->flush();
     m_impl->close();
@@ -228,7 +225,7 @@ namespace nccalog
     va_list args;
     va_start (args, fmt);
     vsprintf (buffer,fmt, args);
-    m_impl->setColour(RED);
+    m_impl->setColour(Colours::RED);
     m_impl->write("[ERROR] ");
     setColour(m_impl->m_colour);
     std::string text=buffer;
@@ -246,7 +243,7 @@ namespace nccalog
     va_list args;
     va_start (args, fmt);
     vsprintf (buffer,fmt, args);
-    m_impl->setColour(GREEN);
+    m_impl->setColour(Colours::GREEN);
     m_impl->write("[Warning] ");
     setColour(m_impl->m_colour);
 
@@ -355,9 +352,9 @@ namespace nccalog
   {
     switch(_f)
     {
-      case TIME : m_impl->m_timeString="%I:%M:%S%p"; break;
-      case TIMEDATE : m_impl->m_timeString="%R %D"; break;
-      case TIMEDATEDAY :m_impl->m_timeString="%c"; break;
+      case TimeFormat::TIME : m_impl->m_timeString="%I:%M:%S%p"; break;
+      case TimeFormat::TIMEDATE : m_impl->m_timeString="%R %D"; break;
+      case TimeFormat::TIMEDATEDAY :m_impl->m_timeString="%c"; break;
     }
   }
 }

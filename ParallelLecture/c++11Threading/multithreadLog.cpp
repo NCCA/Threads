@@ -4,13 +4,12 @@
 #include <cstdlib>
 #include "Logger.h"
 
-nccalog::NCCALogger log;
 
 void task()
 {
-    log.setColour(nccalog::RED);
+    nccalog::NCCALogger::instance().setColour(nccalog::Colours::RED);
     for(int i=0; i<4; ++i)
-        log.logMessage(  "task %x\n" ,std::this_thread::get_id() );
+    nccalog::NCCALogger::instance().logMessage(  "task %x\n" ,std::this_thread::get_id() );
 }
 
 int main(){
@@ -18,15 +17,15 @@ int main(){
 
     for(int i = 0; i < 5; ++i)
     {
-        log.setColour(nccalog::CYAN);
-        log.logWarning("creating thread %d\n",i);
+        nccalog::NCCALogger::instance().setColour(nccalog::Colours::CYAN);
+        nccalog::NCCALogger::instance().logWarning("creating thread %d\n",i);
         threads.push_back(std::thread(task));
     }
     int i=0;
     for(auto& thread : threads)
     {
-        log.setColour(nccalog::YELLOW);
-        log.logWarning("Joining thread %d\n",i++);
+        nccalog::NCCALogger::instance().setColour(nccalog::Colours::YELLOW);
+        nccalog::NCCALogger::instance().logWarning("Joining thread %d\n",i++);
         thread.join();
     }
 

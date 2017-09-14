@@ -3,7 +3,7 @@
 #include <thread>
 #include <chrono>
 
-int counter=0;
+int g_counter=0;
 
 void run(int runs)
 {
@@ -11,7 +11,7 @@ void run(int runs)
   for(int i=0; i<runs; ++i)
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(rand()%4));
-    counter++;
+    g_counter++;
   }
 }
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
   {
     t[i]->join();
   }
-  std::cout<<counter<<'\n';
+  std::cout<<g_counter<<'\n';
 
 
 }

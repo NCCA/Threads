@@ -7,7 +7,6 @@
 
 #include "Logger.h"
 
-nccalog::NCCALogger log;
 class Foo
 {
 	public :
@@ -27,8 +26,8 @@ int main()
 {
   std::vector<std::thread> threads;
   threads.reserve(2);
-  log.setColour(nccalog::CYAN);
-  log.logWarning("creating thread String Function\n");
+  nccalog::NCCALogger::instance().setColour(nccalog::Colours::CYAN);
+  nccalog::NCCALogger::instance().logWarning("creating thread String Function\n");
   Foo *pFoo=new Foo(50);
   Foo b(99);
 
@@ -44,11 +43,11 @@ int main()
   int i=0;
   for(auto& thread : threads)
   {
-      log.setColour(nccalog::YELLOW);
-      log.logWarning("Joining thread %d\n",i++);
+      nccalog::NCCALogger::instance().setColour(nccalog::Colours::YELLOW);
+      nccalog::NCCALogger::instance().logWarning("Joining thread %d\n",i++);
       thread.join();
   }
-  log.logError("Value a %d Value b %d \n",value1,value2);
+  nccalog::NCCALogger::instance().logError("Value a %d Value b %d \n",value1,value2);
 
   return EXIT_SUCCESS;
 }

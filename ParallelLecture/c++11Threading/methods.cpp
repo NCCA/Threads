@@ -1,13 +1,13 @@
 #include <thread>
 #include <iostream>
 #include <vector>
+#include <memory>
 #include <cstdlib>
 #include <string>
 #include <functional>
 
 #include "Logger.h"
 
-nccalog::NCCALogger log;
 
 class Foo
 {
@@ -16,21 +16,21 @@ class Foo
 	void foo(const std::string  &a, const std::string &b)
 	{
 		while(1)
-		log.logMessage("foo(str,str) %d ID %d value %s %s \n"
+		nccalog::NCCALogger::instance().logMessage("foo(str,str) %d ID %d value %s %s \n"
 			,m_id,std::this_thread::get_id(),a.c_str(),b.c_str());
 	}
 
 	void foo(int a)
 	{
 		while(1)
-		log.logMessage("foo(int) %d ID %d value %d \n"
+		nccalog::NCCALogger::instance().logMessage("foo(int) %d ID %d value %d \n"
 			,m_id,std::this_thread::get_id(),a);
 	}
 
 	void foo(double a)
 	{
 		while(1)
-		log.logMessage("foo(double) %d ID %d value %f\n"
+		nccalog::NCCALogger::instance().logMessage("foo(double) %d ID %d value %f\n"
 			,m_id,std::this_thread::get_id(),a);
 	}
 	private :
@@ -42,16 +42,16 @@ int main()
 {
   std::vector<std::thread> threads;
   threads.reserve(6);
-  log.setColour(nccalog::CYAN);
-  log.logWarning("creating thread String Function\n");
-  auto *pFoo=new Foo(10);
+  nccalog::NCCALogger::instance().setColour(nccalog::Colours::CYAN);
+  nccalog::NCCALogger::instance().logWarning("creating thread String Function\n");
+  std::shared_ptr<Foo> pFoo(new Foo(10));
   Foo b(20);
 
 	
 	auto funca = std::bind( static_cast<void (Foo::*)( int )>(&Foo::foo),b,2);
 	threads.emplace_back(funca);
 
-	auto funcb = std::bind( static_cast<void (Foo::*)( int )>(&Foo::foo),pFoo,99);
+	auto funcb = std::bind( static_cast<void (Foo::*)( int )>(&Foo::foo),pFoo.get(),99);
 	threads.emplace_back(funcb);
 	
 	auto funcc = std::bind( static_cast<void (Foo::*)( double )>(&Foo::foo),b,2.23);
@@ -66,17 +66,16 @@ int main()
 	(&Foo::foo),b,sa,sb);
 	threads.emplace_back(funce);
 	auto funcf = std::bind( static_cast<void (Foo::*)( const std::string &,const std::string & )>
-	(&Foo::foo),pFoo,sa,sb);
+	(&Foo::foo),pFoo.get(),sa,sb);
 	threads.emplace_back(funcf);
 
   int i=0;
   for(auto& thread : threads)
   {
-      log.setColour(nccalog::YELLOW);
-      log.logWarning("Joining thread %d\n",i++);
+      nccalog::NCCALogger::instance().setColour(nccalog::Colours::YELLOW);
+      nccalog::NCCALogger::instance().logWarning("Joining thread %d\n",i++);
       thread.join();
   }
 
-  delete pFoo;
   return EXIT_SUCCESS;
 }
