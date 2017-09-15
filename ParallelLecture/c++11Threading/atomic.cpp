@@ -7,7 +7,7 @@ class Counter
 {
   public :
 
-    Counter() : m_value(0) {}
+    Counter() =default;
 
     void increment(){ ++m_value;}
 
@@ -15,11 +15,11 @@ class Counter
 
     int get()
     {
-    return m_value.load();
+      return m_value.load();
     }
 
   public :
-    std::atomic<int> m_value;
+    std::atomic<int> m_value={0};
 
 };
 
@@ -32,19 +32,19 @@ int main()
   {
     threads.push_back(std::thread([&counter]()
     {
+  
       for(int i = 0; i < 500; ++i)
       {
         counter.increment();
       }
-    }));
+      }
+    ));
   }
 
-  for(auto& thread : threads)
-  {
-    thread.join();
-  }
+  std::for_each(std::begin(threads),std::end(threads),std::mem_fn(&std::thread::join));
+  
 
- std::cout << counter.get() << std::endl;
+  std::cout << counter.get() << '\n';
 
- return 0;
+  return 0;
 }

@@ -15,5 +15,5 @@ int main()
   i=9;
   std::thread t(foo,&i);
   t.join();
-  std::cout<<i<<std::endl;
+  std::cout<<i<<'\n';
 }

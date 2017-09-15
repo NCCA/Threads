@@ -3,6 +3,8 @@
 #include <vector>
 #include <cstdlib>
 #include <string>
+#include <algorithm>
+#include <chrono>
 #include <functional>
 
 #include "Logger.h"
@@ -10,25 +12,37 @@
 void foo(const std::string  &a, const std::string &b)
 {
 	while(1)
+	{
+	nccalog::NCCALogger::instance().setColour(nccalog::Colours::RED);
+		
 	nccalog::NCCALogger::instance().
 	logMessage("foo(str,str) ID %d value %s %s \n"
 		,std::this_thread::get_id(),a.c_str(),b.c_str());
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
 }
-
 void foo(int a)
 {
 	while(1)
-	nccalog::NCCALogger::instance().logMessage("foo(int) ID %d value %d \n"
+	{
+		nccalog::NCCALogger::instance().setColour(nccalog::Colours::YELLOW);		
+		nccalog::NCCALogger::instance().logMessage("foo(int) ID %d value %d \n"
 		,std::this_thread::get_id(),a);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));		
+	}
 }
 
 void foo(double a)
 {
 	while(1)
-	nccalog::NCCALogger::instance().logMessage("foo(double) ID %d value %f\n"
+	{
+		nccalog::NCCALogger::instance().setColour(nccalog::Colours::BLUE);
+		
+		nccalog::NCCALogger::instance().logMessage("foo(double) ID %d value %f\n"
 		,std::this_thread::get_id(),a);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));		
+	}
 }
-
 
 
 int main()
@@ -54,7 +68,7 @@ int main()
 	auto funcs2 = std::bind<void(const std::string &,const std::string &)>(foo,_1,_2);
 	threads.emplace_back(funcs2,"placeholders","are cool");
 
-
+/*
   int i=0;
   for(auto& thread : threads)
   {
@@ -62,6 +76,7 @@ int main()
       nccalog::NCCALogger::instance().logWarning("Joining thread %d\n",i++);
       thread.join();
   }
-
+*/
+	std::for_each(std::begin(threads),std::end(threads),std::mem_fn(&std::thread::join));
   return EXIT_SUCCESS;
 }

@@ -4,7 +4,7 @@
 
 void func(std::promise<int> && p) 
 {
-    p.set_value(99);
+	p.set_value(99);
 }
 
 
@@ -15,5 +15,5 @@ int main()
 	std::thread t(&func, std::move(p));
 	t.join();
 	int i = f.get();
-	std::cout<<i<<"\n";
+	std::cout<<i<<'\n';
 }

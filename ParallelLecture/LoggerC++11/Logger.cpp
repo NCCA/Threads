@@ -33,11 +33,10 @@ namespace nccalog
 
     std::ofstream m_file;
     std::mutex m_writeStreamMutex;
-    std::mutex m_writeColourMutex;
     std::mutex m_setColourMutex;
     std::mutex m_writeNumberMutex;
     std::mutex m_writeTimeMutex;
-    std::condition_variable waitColour;
+    std::condition_variable m_waitColour;
     bool ready = false;
     std::string m_timeString;
 
@@ -310,7 +309,6 @@ namespace nccalog
   void NCCALogger::setColour(Colours _c)
   {
     std::lock_guard<std::mutex> lock(m_impl->m_setColourMutex);
-
     m_impl->m_colour=_c;
   }
   void NCCALogger::enableLineNumbers()

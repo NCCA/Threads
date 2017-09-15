@@ -6,19 +6,19 @@
 
 class Task
 {
-	public :
+public :
 
-		Task(){m_id=99;}
-		Task(int _t) : m_id(_t){;}
+	Task(){m_id=99;}
+	Task(int _t) : m_id(_t){;}
 
-		void operator()() const
-		{
-			std::cout<<"class operator called "<<m_id<<"\n";
-		}
+	void operator()() const
+	{
+		std::cout<<"class operator called "<<m_id<<'\n';
+	}
 
 	private :
 		int m_id;
-		
+
 
 };
 
