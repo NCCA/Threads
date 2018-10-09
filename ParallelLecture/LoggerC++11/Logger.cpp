@@ -1,4 +1,5 @@
 #include "Logger.h"
+#include <condition_variable>
 #include <cstdarg>
 #include <vector>
 #include <boost/format.hpp>

@@ -1,12 +1,32 @@
-[34mNCCALogger started [34m02:44:00PM [34m
-[0m0001[0m [0m02:44:00PM [32m[Warning] [32mThread 252899328 called 1 times 
-[0m0002[0m [0m02:44:00PM [32m[Warning] [32mThread 255045632 called 1 times 
-[0m0003[0m [0m02:44:00PM [32m[Warning] [32mThread 253972480 called 1 times 
-[32m0004[32m [0m02:44:00PM [32m[Warning] [32mThread 254509056 called 1 times 
-[32m0005[32m [0m02:44:00PM [32m[Warning] [32mThread 253435904 called 1 times 
-[0m0006[0m [0m02:44:00PM [32m[Warning] [32mThread 255582208 called 1 times 
-[0m0007[0m [0m02:44:00PM [32m[Warning] [32mThread 256655360 called 1 times 
-[0m0008[0m [0m02:44:00PM [32m[Warning] [32mThread 256118784 called 1 times 
-[0m0009[0m [0m02:44:00PM [32m[Warning] [32mThread 257191936 called 1 times 
-[32m0010[32m [0m02:44:00PM [32m[Warning] [32mThread 257728512 called 1 times 
+[34mNCCALogger started [34m01:45:18PM [34m
+[36m0001[36m [36m01:45:18PM [32m[Warning] [32mcreating thread 0
+[36m0002[36m [36m01:45:18PM [32m[Warning] [32mcreating thread 1
+[31m0003[31m [31m01:45:18PM [31mtask f6085700
+[31m0004[31m [31m01:45:18PM [32m[Warning] [32mcreating thread 2
+[32m0005[32m [36m0006[36m [36m01:45:18PM [36mtask f5884700
+[36m0007[36m [31m01:45:18PM [32m[Warning] [32mcreating thread 3
+[32m01:45:18PM [32mtask f6085700
+[32m0008[32m [31m0009[31m [31m01:45:18PM [31mtask f5083700
+[31m0010[31m [31m01:45:18PM [31m0011[31m [32m[Warning] [32mcreating thread 4
+[31m01:45:18PM [31mtask f6085700
+[31m01:45:18PM [31mtask f5884700
+[31m0012[31m [31m01:45:18PM [31m0013[31m [31mtask f4882700
+[31m0014[31m [31m0015[31m01:45:18PM [31m [31mtask f5083700
+[31m0016[31m [31m01:45:18PM [31mtask f6085700
+[31m0017[31m [31m01:45:18PM [31mtask f5884700
+[31m0018[31m [31m01:45:18PM [31m0019[31m [31mtask f4882700
+[31m0020[31m [31m01:45:18PM [31mtask f5083700
+[31m0021[31m [31m01:45:18PM [31m0022[31m [31mtask e7fff700
+[31m0023[31m [31m01:45:18PM [31mtask f5083700
+[31m01:45:18PM [31mtask f4882700
+[31m0024[31m [31m01:45:18PM [31mtask f5884700
+[31m01:45:18PM [32m[Warning] [32mJoining thread 0
+[33m0025[33m [33m01:45:18PM [33mtask e7fff700
+[33m0026[33m [33m01:45:18PM [33mtask f4882700
+[33m01:45:18PM [32m[Warning] [32mJoining thread 1
+[33m0027[33m [33m01:45:18PM [33mtask e7fff700
+[33m0028[33m [33m01:45:18PM [32m[Warning] [32mJoining thread 2
+[33m0029[33m [33m01:45:18PM [33mtask e7fff700
+[33m01:45:18PM [32m[Warning] [32mJoining thread 3
+[33m0030[33m [33m01:45:18PM [32m[Warning] [32mJoining thread 4
 [0m
