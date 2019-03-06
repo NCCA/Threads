@@ -10,6 +10,8 @@
 #include <sstream>
 #include <boost/iostreams/tee.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <condition_variable>
+
 namespace nccalog
 {
   // PIMPL Idiom to make lib cleaner
@@ -32,11 +34,11 @@ namespace nccalog
     typedef boost::iostreams::stream<Tee> TeeStream;
 
     std::ofstream m_file;
-    std::mutex m_writeStreamMutex;
-    std::mutex m_setColourMutex;
-    std::mutex m_writeNumberMutex;
-    std::mutex m_writeTimeMutex;
-    std::condition_variable m_waitColour;
+    static std::recursive_mutex m_writeStreamMutex;
+    //std::mutex m_setColourMutex;
+    //std::mutex m_writeNumberMutex;
+    //std::mutex m_writeTimeMutex;
+    std::condition_variable m_waitSet;
     bool ready = false;
     std::string m_timeString;
 
@@ -68,6 +70,7 @@ namespace nccalog
 
 
 
+std::recursive_mutex NCCALogger::Impl::m_writeStreamMutex;
 
 
   NCCALogger::Impl::Impl(const std::string &_fname):
@@ -105,7 +108,7 @@ namespace nccalog
 
   void NCCALogger::Impl::currentTime()
   {
-    std::lock_guard<std::mutex> lock(m_writeTimeMutex);
+    std::lock_guard<std::recursive_mutex> lock(m_writeStreamMutex);
 
     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -118,7 +121,7 @@ namespace nccalog
 
   void NCCALogger::Impl::writeLineNumber()
   {
-    std::lock_guard<std::mutex> lock(m_writeNumberMutex);
+    std::lock_guard<std::recursive_mutex> lock(m_writeStreamMutex);
 
     setColour(m_colour);
     if(m_lineNumber == true)
@@ -143,8 +146,7 @@ namespace nccalog
 
   void NCCALogger::Impl::write(const std::string &_text)
   {
-
-    std::lock_guard<std::mutex> lock(m_writeStreamMutex);
+    std::lock_guard<std::recursive_mutex> lock(m_writeStreamMutex);
     m_output<<m_colourString;
     m_output<<_text;
 
@@ -152,6 +154,7 @@ namespace nccalog
   // from http://stackoverflow.com/questions/3585846/color-text-in-terminal-aplications-in-unix
   void NCCALogger::Impl::setColour(enum Colours c)
   {
+    std::lock_guard<std::recursive_mutex> lock(m_writeStreamMutex);
     if(m_disableColours) return;
 
     switch(c)
@@ -165,7 +168,6 @@ namespace nccalog
       case Colours::CYAN : m_colourString="\x1B[36m"; break;
       case Colours::WHITE : m_colourString="\x1B[37m"; break;
       case Colours::RESET : m_colourString="\033[0m"; break;
-      default : m_colourString="\033[0m"; break;
     }
 
 
@@ -308,7 +310,6 @@ namespace nccalog
   }
   void NCCALogger::setColour(Colours _c)
   {
-    std::lock_guard<std::mutex> lock(m_impl->m_setColourMutex);
     m_impl->m_colour=_c;
   }
   void NCCALogger::enableLineNumbers()

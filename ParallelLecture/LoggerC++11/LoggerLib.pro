@@ -8,8 +8,6 @@ QMAKE_CXXFLAGS+=-Wthread-safety
 TEMPLATE = lib
 CONFIG+=staticlib
 CONFIG+=c++11
-QMAKE_CXXFLAGS+=-std=c++11
-QMAKE_CXX=g++
 TARGET = NCCALogger
 # this is where we want to put the intermediate build files ( ../obj)
 OBJECTS_DIR = obj
@@ -21,6 +19,8 @@ QMAKE_LFLAGS_SONAME=
 INCLUDEPATH+=include
 INCLUDEPATH+=/usr/local/include/
 HEADERS+=$$PWD/Logger.h
+macx:QMAKE_MAC_SDK = macosx10.13
+
 
 
 

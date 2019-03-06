@@ -15,7 +15,7 @@ void *starFillerThread(void *arg)
 	printf("Star Filler\n");
 	for(int i=0; i<SIZE; ++i)
 		sharedMem[i]='*';
-	sleep(2);
+	sleep(1);
 	}
 }
 
@@ -45,7 +45,7 @@ void *consumerThread(void *arg)
 
 int main()
 {
-	sharedMem.reset(  new char[SIZE]);
+	sharedMem= std::make_unique<char []>(SIZE);//    .reset(new char[SIZE]);
 	std::array<pthread_t,3> threadID;
 
 	pthread_create(&threadID[0],0,starFillerThread,0);

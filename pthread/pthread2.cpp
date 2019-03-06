@@ -24,10 +24,10 @@ void *threadFunc(void *arg)
 
 int main()
 {
-	std::array<pthread_t,4> threadID;
+	std::array<pthread_t,14> threadID;
 	struct argStruct args;
 
-	for(int i=0; i<4; ++i)
+	for(int i=0; i<14; ++i)
 	{
 		args.arg1=i;
 		args.arg2='a'+i;

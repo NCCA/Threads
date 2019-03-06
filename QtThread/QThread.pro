@@ -6,3 +6,5 @@ SOURCES=main.cpp \
 
 HEADERS += \
     MyThread.h
+
+

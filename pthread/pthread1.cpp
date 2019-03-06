@@ -5,10 +5,10 @@
 
 void *threadFunc(void *arg)
 {
-	for(int i=0; i<2; ++i)
+	for(int i=0; i<3; ++i)
 	{
 		std::cout<<"thread func "<<i<<' ';
-		std::cout.flush();
+	//	std::cout.flush();
 	}
 std::cout<<'\n';
 return 0;

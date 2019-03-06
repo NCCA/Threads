@@ -60,9 +60,9 @@ int main()
 	std::array<pthread_t,3> threadID;
 
   pthread_mutex_init(&mutex, 0);
+	pthread_create(&threadID[2],0,consumerThread,0);
 	pthread_create(&threadID[0],0,starFillerThread,0);
 	pthread_create(&threadID[1],0,hashFillerThread,0);
-	pthread_create(&threadID[2],0,consumerThread,0);
 
 	for(auto &t : threadID)
 		pthread_join(t,0);
