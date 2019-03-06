@@ -3,7 +3,6 @@
 # -------------------------------------------------
 # qt 5 wants this may cause errors with 4
 isEqual(QT_MAJOR_VERSION, 5) {cache() }
-QMAKE_CXXFLAGS+=-Wthread-safety
 # We will use the built in Qt lib template
 TEMPLATE = lib
 CONFIG+=staticlib
